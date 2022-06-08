@@ -15,11 +15,12 @@ return require('packer').startup(function()
     use '~/git/palefire-nvim/'
     use 'norcalli/nvim-colorizer.lua'
     use 'glepnir/dashboard-nvim'
+    use 'ojroques/vim-oscyank'
 
-    -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+        requires = {{'nvim-lua/plenary.nvim'}},
     }
 end)
 
