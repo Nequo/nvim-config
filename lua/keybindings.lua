@@ -1,30 +1,21 @@
-function keymap(mode, lhs, rhs, opts)
-    local options = { silent = true, noremap = true }
-
-    if opts then options = vim.tbl_extend('force', options, opts) end
-
-    return vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
---function keymap(mode, lhs, rhs, opts)
---  return vim.api.nvim_set_keymap(mode, lhs, rhs, vim.tbl_extend('keep', opts or {}, {
---        nowait = true,
---        silent = true,
---        noremap = true,
---    }))
---end
-
+local opts = { noremap=true, silent=true }
 -- Telescope
-keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>")
-keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>")
-keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>")
-keymap('n', '<leader>fa', "<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>")
+vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+vim.keymap.set('n', '<leader>fr', "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
+vim.keymap.set('n', '<leader>fp', "<cmd>lua require('telescope.builtin').find_files({cwd = '~/.config/nvim/'})<cr>", opts)
+vim.keymap.set('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+vim.keymap.set('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+vim.keymap.set('n', '<leader>fa', "<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>", opts)
+
+-- OSCYank
+-- This allows you to do <leader>o[motion] to copy things into the system clipboard
+-- and works even when over ssh and in tmux
+vim.keymap.set('n', '<leader>o', "<Plug>OSCYank", opts)
 
 -- Lsp-trouble
--- keymap("n", "<leader>lt", "<cmd>LspTroubleToggle<cr>")
--- keymap("n", "<leader>lo", "<cmd>LspTroubleDocumentToggle<cr>")
+-- vim.keymap.set("n", "<leader>lt", "<cmd>LspTroubleToggle<cr>", opts)
+-- vim.keymap.set("n", "<leader>lo", "<cmd>LspTroubleDocumentToggle<cr>", opts)
 
 -- Nvim-tree
--- keymap('n', '<leader>op', "<cmd>NvimTreeToggle<cr>")
-
+-- vim.keymap.set('n', '<leader>op', "<cmd>NvimTreeToggle<cr>", opts)
